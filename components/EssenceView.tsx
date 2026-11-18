@@ -91,9 +91,19 @@ const EssenceView: React.FC<EssenceViewProps> = ({
                     <button
                       type="button"
                       onClick={() => (isEditing ? setEditingId(null) : startEdit(card))}
-                      className="min-h-[32px] px-2 py-1 rounded-lg text-[11px] font-medium bg-white/80 hover:bg-white text-slate-600 border border-black/10 whitespace-nowrap shrink-0"
+                      aria-label={isEditing ? '關閉編輯' : '編輯筆記'}
+                      title={isEditing ? '關閉編輯' : '編輯筆記'}
+                      className="min-h-[32px] min-w-[32px] p-1.5 rounded-lg bg-white/80 hover:bg-white text-slate-600 border border-black/10 flex items-center justify-center shrink-0"
                     >
-                      {isEditing ? '關閉' : hasContent ? '編輯' : '+ 筆記'}
+                      {isEditing ? (
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      ) : (
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                        </svg>
+                      )}
                     </button>
                   </div>
 

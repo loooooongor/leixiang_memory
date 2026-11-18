@@ -26,7 +26,8 @@ export enum AppMode {
   VIEW = 'VIEW',
   LEARN = 'LEARN',
   QUIZ = 'QUIZ',
-  ESSENCE = 'ESSENCE'
+  ESSENCE = 'ESSENCE',
+  COMPOSE = 'COMPOSE'
 }
 
 export interface QuizQuestion {
