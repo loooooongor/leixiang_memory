@@ -67,7 +67,7 @@ const ListView: React.FC<ListViewProps> = ({
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-5">
             {catCards.map((card) => {
               const theme = CATEGORY_THEMES[card.category];
               const isEditing = editingId === card.id;
@@ -77,34 +77,32 @@ const ListView: React.FC<ListViewProps> = ({
               return (
                 <div
                   key={card.id}
-                  className={`${theme.cardBg} ${theme.cardBorder} border rounded-2xl sm:rounded-3xl p-5 sm:p-6 flex flex-col h-full transition-shadow hover:shadow-sm`}
+                  className={`${theme.cardBg} ${theme.cardBorder} border rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col h-full transition-shadow hover:shadow-sm ${
+                    isEditing ? 'col-span-2 lg:col-span-1' : ''
+                  }`}
                 >
-                  <div className="flex justify-between items-center gap-2 mb-3">
-                    <span className={`text-xs font-medium ${theme.accentText}`}>
-                      {card.category}
-                    </span>
+                  <div className="flex justify-between items-start gap-1.5 mb-2 sm:mb-3">
+                    <h3 className="text-xl sm:text-3xl font-bold text-slate-900 leading-tight">
+                      {card.front}
+                    </h3>
                     <button
                       type="button"
                       onClick={() => (isEditing ? setEditingId(null) : startEditing(card))}
                       aria-label={isEditing ? '關閉編輯' : '編輯象意'}
                       title={isEditing ? '關閉編輯' : '編輯象意'}
-                      className="min-h-[36px] min-w-[36px] p-2 rounded-lg bg-white/80 hover:bg-white text-slate-700 border border-black/10 transition-colors flex items-center justify-center"
+                      className="min-h-[32px] min-w-[32px] sm:min-h-[36px] sm:min-w-[36px] p-1.5 rounded-lg bg-white/60 hover:bg-white text-slate-700 transition-colors flex items-center justify-center shrink-0"
                     >
                       {isEditing ? (
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       ) : (
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                         </svg>
                       )}
                     </button>
                   </div>
-
-                  <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-                    {card.front}
-                  </h3>
 
                   {isEditing ? (
                     <div className="space-y-3 flex-1 flex flex-col">
@@ -145,25 +143,31 @@ const ListView: React.FC<ListViewProps> = ({
                       </div>
                     </div>
                   ) : (
-                    <div className="space-y-3">
+                    <div className="space-y-1.5 sm:space-y-2">
                       {blocks.map((block, bi) => (
-                        <div key={bi} className="flex flex-wrap gap-1.5 sm:gap-2">
+                        <div key={bi} className="flex flex-wrap items-baseline gap-x-0.5 gap-y-0.5 leading-snug">
                           {block.map((tag, i) => {
                             const isHighlighted = highlights.includes(tag);
                             return (
-                              <button
-                                key={`${bi}-${i}`}
-                                type="button"
-                                onClick={() => onToggleHighlight(card.id, tag)}
-                                title={isHighlighted ? '點擊取消重點高亮' : '點擊標記為重點高亮'}
-                                className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-xs sm:text-sm border transition-all text-left ${
-                                  isHighlighted
-                                    ? 'bg-amber-200/90 text-amber-950 border-amber-400 font-bold shadow-xs'
-                                    : `${theme.tagBg} hover:border-amber-300`
-                                }`}
-                              >
-                                {isHighlighted ? `★ ${tag}` : tag}
-                              </button>
+                              <React.Fragment key={`${bi}-${i}`}>
+                                <button
+                                  type="button"
+                                  onClick={() => onToggleHighlight(card.id, tag)}
+                                  title={isHighlighted ? '點擊取消重點高亮' : '點擊標記為重點高亮'}
+                                  className={`text-xs sm:text-sm transition-colors text-left leading-snug ${
+                                    isHighlighted
+                                      ? 'bg-amber-200/85 text-amber-950 font-bold rounded px-1 py-0.5'
+                                      : 'text-slate-700 hover:text-slate-950 py-0.5'
+                                  }`}
+                                >
+                                  {isHighlighted ? `★${tag}` : tag}
+                                </button>
+                                {i < block.length - 1 && (
+                                  <span className="text-slate-400 select-none text-xs" aria-hidden="true">
+                                    、
+                                  </span>
+                                )}
+                              </React.Fragment>
                             );
                           })}
                         </div>

@@ -131,31 +131,31 @@ const App: React.FC = () => {
     switch (tabMode) {
       case AppMode.VIEW:
         return (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={strokeWidth} viewBox="0 0 24 24" aria-hidden="true">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={strokeWidth} viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
           </svg>
         );
       case AppMode.LEARN:
         return (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={strokeWidth} viewBox="0 0 24 24" aria-hidden="true">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={strokeWidth} viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
           </svg>
         );
       case AppMode.QUIZ:
         return (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={strokeWidth} viewBox="0 0 24 24" aria-hidden="true">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={strokeWidth} viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         );
       case AppMode.ESSENCE:
         return (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={strokeWidth} viewBox="0 0 24 24" aria-hidden="true">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={strokeWidth} viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
           </svg>
         );
       case AppMode.COMPOSE:
         return (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={strokeWidth} viewBox="0 0 24 24" aria-hidden="true">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={strokeWidth} viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
           </svg>
         );
@@ -263,7 +263,7 @@ const App: React.FC = () => {
       )}
 
       {/* Main Content Area (padded bottom for fixed footer nav) */}
-      <main className="flex-1 max-w-6xl mx-auto w-full px-3 sm:px-6 pt-2.5 sm:pt-5 pb-20">
+      <main className="flex-1 max-w-6xl mx-auto w-full px-3 sm:px-6 pt-2.5 sm:pt-5 pb-24">
         {mode === AppMode.VIEW && (
           <ListView
             cards={filteredCards}
@@ -298,7 +298,7 @@ const App: React.FC = () => {
 
       {/* Bottom Icon Navigation Footer */}
       <footer className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/80">
-        <nav className="max-w-2xl mx-auto grid grid-cols-5 h-14 sm:h-16">
+        <nav className="max-w-2xl mx-auto grid grid-cols-5 h-16 sm:h-[68px]">
           {navTabs.map((tab) => {
             const isActive = mode === tab.mode;
             return (
@@ -306,14 +306,15 @@ const App: React.FC = () => {
                 key={tab.mode}
                 type="button"
                 onClick={() => setMode(tab.mode)}
-                className={`flex flex-col items-center justify-center gap-0.5 transition-colors whitespace-nowrap ${
+                aria-label={tab.label}
+                title={tab.label}
+                className={`flex items-center justify-center transition-colors ${
                   isActive
-                    ? 'text-slate-900 font-bold'
-                    : 'text-slate-400 hover:text-slate-700 font-medium'
+                    ? 'text-slate-900'
+                    : 'text-slate-400 hover:text-slate-700'
                 }`}
               >
                 {renderNavIcon(tab.mode, isActive)}
-                <span className="text-[11px] leading-tight">{tab.label}</span>
               </button>
             );
           })}
